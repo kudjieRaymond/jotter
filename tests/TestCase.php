@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 {
 	//use migrations and seed the database before each test
 
-		use CreatesApplication , DatabaseMigrations;
+		use CreatesApplication ;
 		
 		/*public function setUp()
 		{

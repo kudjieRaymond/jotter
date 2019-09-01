@@ -21,6 +21,7 @@ class LoginTest extends TestCase
 		$response->assertStatus(422);
 		
 	}
+	
 	public function testUserLoginSuccessfully()
 	{
 		$user = factory(User::class)->create([

@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
 Route::group(['namespace'=>'Api', 'prefix'=> 'v1'], function(){
 	Route::post('login', 'AuthController@login');
@@ -25,5 +27,8 @@ Route::group(['namespace'=>'Api', 'prefix'=> 'v1'], function(){
 		Route::post('refresh', 'AuthController@refresh');
 		Route::post('logout', 'AuthController@logout');
 
+		Route::apiResource("tasks", "TaskController");
+
+		//Route::post("tasks/create", "TaskController@store")->name('tasks.create');
 	});
 });
