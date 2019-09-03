@@ -85,6 +85,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+			//Check is user is the owner of the recipe
+			if($task->user_id != auth()->user()->id){
+				abort(404);
+				return;
+			}
 			$task->delete();
 			
 			return response()->json(null, 204);
