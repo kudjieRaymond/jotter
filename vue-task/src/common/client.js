@@ -11,6 +11,15 @@ client.defaults.headers.common['Content-type'] = 'application/json' ;
 client.defaults.headers.common['Accept'] = 'application/json' ;
 
 export default {
+	register(data){
+		return client.post('register', data)
+	},
+	login(data){
+		return client.post('login', data)
+	},
+	me(){
+		return client.get('me')
+	},
 	all(params){
 		return client.get('tasks', params)
 	},
@@ -18,8 +27,8 @@ export default {
 		return client.get(`tasks/${id}`)
 
 	},
-	create(url, data){
-		return client.post(url, data)
+	create(data){
+		return client.post('tasks', data)
 	},
 	update(id, data){
 		return client.put(`tasks/${id}`, data)

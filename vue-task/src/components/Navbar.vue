@@ -3,7 +3,6 @@
 		<nav>
 			<div class="nav-wrapper">
 				<router-link :to="{name : 'home'}"  class="brand-logo">Laravel-Vue-Task</router-link>
-				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><router-link :to="{name: 'login'}">Login</router-link></li>
@@ -27,7 +26,8 @@
 			<li><a class="subheader">Subheader</a></li>
 			<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 		</ul>
-		  
+		<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
 	</div>
 </template>
 
