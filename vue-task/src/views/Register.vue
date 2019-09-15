@@ -43,6 +43,7 @@
 	</div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
 	
 	data(){
@@ -54,8 +55,15 @@ export default {
 		}
 	},
 	methods:{
+		...mapActions('authentication', ['register']),
 		sendForm(){
-
+			if (! this.termsCheck) { return }
+			this.register({
+				name:this.fullname,
+				email:this.email,
+				password:this.password,
+			})
+			.then(() => this.$router.push({name: 'home'}))
 		}
 	}
 }

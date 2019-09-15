@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	modules:{
-		home: moduleHome,
+		home : moduleHome,
 		authentication: moduleAuthentication,
 		tasks: moduleTasks
 	},

@@ -37,6 +37,7 @@ class LoginTest extends TestCase
 								'access_token' ,
 								'token_type'  ,
 								'expires_in' ,
+								'user'
 							]);
 	}
 }

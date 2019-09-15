@@ -1,22 +1,28 @@
 import client from '../../common/client'
 
 const moduleTasks = {
-	namespace:true,
+	namespaced:true,
 	state: {
 	},
 
 	actions:{
-		async task_create(context, tasks){
-			await client.create(tasks)
-			context.dispatch('/home/tasks_fetch', null, {root:true})
+		async createTask(context, task){
+			await client.create(task)
+			context.dispatch('/home/tasksFetch', null, {root:true})
 		},
-		async task_delete(context, task){
+		async deleteTask(context, task){
 			await client.delete(task.id)
-			context.dispatch('/home/tasks_fetch', null, {root:true})
+			context.dispatch('/home/tasksFetch', null, {root:true})
 		},
-		async task_update(context, params){
-			await client.update(params.id, params.updatedFields)
-			context.dispatch('/home/tasks_fetch', null, {root:true})
+		async updateTask(context, params){
+			try{
+				await client.update(params.id, params.updatedFields)
+				context.dispatch('/home/tasksFetch', null, {root:true})
+			}catch({response}){
+				throw new Error(response.data.message)
+				
+			}
+			
 		}
 
 	}

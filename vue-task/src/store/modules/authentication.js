@@ -3,7 +3,7 @@ import JwtService from '../../common/jwt-service'
 import client from '../../common/client'
 
 const moduleAuthentication = {
-	namespace:true,
+	namespaced:true,
 	state : {
 		errors : null,
 		user :{},
@@ -41,31 +41,32 @@ const moduleAuthentication = {
 				const {data} = await client.register(payload)
 				context.commit('setAuth', data)
 			}catch({response}){
-				context.commit('setError', JSON.parse(response.data))
-				throw new Error(JSON.parse(response.data))
+				context.commit('setError', response.data.errors)
+				throw new Error(response.data.message)
 			}
 		},
-		login({commit}, payload){
-			client.login(payload)
-						.then(({ data }) =>{
-							commit('setAuth', data)
-						})
-						.catch(({ response }) => {
-							console.log(JSON.parse(response))
-						});
+		async login({commit}, payload){
+			try{
+				const {data} = await client.login(payload)
+				commit('setAuth', data)
+			}catch({response}){
+				commit('setError', response.data.errors)
+				throw new Error(response.data.message)
+			}
+			
 		},
 		logout({commit}){
 			commit('purgeAuth')
 		},
-		async CHECK_AUTH ({commit}) {
+		async checkAuth ({commit}) {
 			if (JwtService.getToken()) {
 	
 				try {
 					const {data} = await client.me()
 					commit('setAuth', data)
 				} catch ({response}) {
-					commit('setError', JSON.parse(response.data))
-					throw new Error(JSON.parse(response.data))
+					commit('setError', response.data.errors)
+					throw new Error(response.data.message)
 				}
 			} else {
 				commit('purgeAuth')

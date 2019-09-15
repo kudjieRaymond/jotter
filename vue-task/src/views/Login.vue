@@ -30,6 +30,7 @@
 	</div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
 	data(){
 		return {
@@ -38,8 +39,12 @@ export default {
 		}
 	}, 
 	methods:{
+		...mapActions('authentication',['login']),
 		sendForm(){
-
+			this.login({email: this.email, password:this.password})
+			.then(()=>{
+				this.$router.push({ name: "home" })
+			})
 		}
 	}
 }

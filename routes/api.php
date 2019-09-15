@@ -19,11 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
-Route::group(['namespace'=>'Api', 'prefix'=> 'v1'], function(){
+Route::group(['namespace'=>'Api', 'middleware' => 'cors', 'prefix'=> 'v1'], function(){
 	Route::post('login', 'AuthController@login');
 	Route::post('register', 'AuthController@register');
 
-	Route::group(['middeware'=>['auth:api']] , function(){
+	Route::group(['middleware' =>['auth:api']] , function(){
 		Route::post('refresh', 'AuthController@refresh');
 		Route::post('logout', 'AuthController@logout');
 

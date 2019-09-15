@@ -4,10 +4,14 @@
 			<div class="nav-wrapper">
 				<router-link :to="{name : 'home'}"  class="brand-logo">Laravel-Vue-Task</router-link>
 
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<ul v-if="!isAuthenticated" id="nav-mobile" class="right hide-on-med-and-down">
 					<li><router-link :to="{name: 'login'}">Login</router-link></li>
 					<li><router-link :to="{name: 'register'}">Register</router-link></li>
-					<li><a href="collapsible.html">JavaScript</a></li>
+				</ul>
+				<ul v-else class="right hide-on-med-and-down">
+					<li><a>Welcome, {{ currentUser.name }}</a></li>
+					<li><a @click="handleLogout()">Logout</a></li>
+					<li><a href="https://github.com/kudjieRaymond/jotter" target="_blank"><i class="fab fa-github"></i></a></li>
 				</ul>
 			</div>
 		</nav>
@@ -32,11 +36,28 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
+
 export default {
-	name: "Navbar"
+	name: "Navbar",
+
+	computed: {
+      ...mapGetters('authentication',
+        ['currentUser', 'isAuthenticated']
+      )
+    },
+
+    methods: {
+      ...mapActions('authentication',
+        ['logout']
+      ),
+
+      handleLogout() {
+				
+        this.logout().then(() => {
+          this.$router.push({name: 'login'})
+        })
+      }
+    }
 }
 </script>
-
-<style>
-
-</style>
