@@ -12,17 +12,22 @@ const routes = [
 	{
 		path: '/',
 		name: 'home',
-		component: Home
+		component: Home,
+		beforeEnter:verifyAuth
 	},
 	{
 		path: '/register' ,
 		name: 'register',
-		component: Register
+		component: Register,
+		beforeEnter: checkGuest
+
 	},
 	{
 		path: '/login',
 		name: 'login',
-		component: Login
+		component: Login,
+		beforeEnter: checkGuest
+
 	},
 	{
 		path: '*',
@@ -35,6 +40,27 @@ const router = new VueRouter({
 	mode: 'history'
 })
 
+async function verifyAuth(to, from, next){
+	await store.dispatch('authentication/checkAuth')
+	if(store.getters['authentication/isAuthenticated']){
+		next()
+	}else{
+		next({
+			name:'login',
+			query: { redirect: to.fullPath }
+		})
+	}
+}
 
+async function checkGuest (to, from, next) {
+  if (!store.getters['authentication/isAuthenticated']) {
+    next()
+  } else {
+    next({
+      name: 'home',
+      query: { redirect: to.fullPath }
+    })
+  }
+}
 
 export default router

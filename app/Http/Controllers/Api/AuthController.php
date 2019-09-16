@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -68,7 +69,18 @@ class AuthController extends Controller
 	}
 
 
-	
+	/**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        $token = JWTAuth::fromUser(auth()->user());
+
+        return $this->respondWithToken($token);
+    }
+
 
 	/**
 	 * Refresh a token.

@@ -11,13 +11,17 @@ const moduleHome = {
 			return state.tasks
 		},
 		doneTasks:(state, getters) => {
-			return getters.tasks  //.filter((task)=>{task.done === true || task.done === 1})
+			return getters.tasks.filter((task)=>{ 
+				return task.done === true || task.done === 1
+			})
 		},
 		doneTasksCount:(state,getters)=>{
 			return getters.doneTasks.length
 		},	
 		notDoneTasks:(state, getters)=>{
-			return getters.tasks //.filter((task)=>{task.done === false || task.done === 0})
+			return getters.tasks.filter((task)=>{ 
+				return task.done === false || task.done === 0
+			})
 		},
 		notDoneTasksCount:(state,getters)=>{
 			return getters.notDoneTasks.length

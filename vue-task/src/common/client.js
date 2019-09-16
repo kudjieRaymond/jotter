@@ -18,7 +18,7 @@ export default {
 		return client.post('login', data)
 	},
 	me(){
-		return client.get('me')
+		return client.post('me')
 	},
 	all(params){
 		return client.get('tasks', params)

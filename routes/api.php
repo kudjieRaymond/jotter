@@ -26,6 +26,8 @@ Route::group(['namespace'=>'Api', 'middleware' => 'cors', 'prefix'=> 'v1'], func
 	Route::group(['middleware' =>['auth:api']] , function(){
 		Route::post('refresh', 'AuthController@refresh');
 		Route::post('logout', 'AuthController@logout');
+		Route::post('me', 'AuthController@me');
+
 
 		Route::apiResource("tasks", "TaskController");
 
