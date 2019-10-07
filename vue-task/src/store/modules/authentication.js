@@ -41,6 +41,7 @@ const moduleAuthentication = {
 				const {data} = await client.register(payload)
 				context.commit('setAuth', data)
 			}catch({response}){
+				//console.log(response.data)
 				context.commit('setError', response.data.errors)
 				throw new Error(response.data.message)
 			}

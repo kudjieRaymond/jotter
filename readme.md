@@ -1,6 +1,11 @@
 # JOTTER
-Task Mannagenemt SPA made with Laravel and VueJS. Features CRUD functionality,
+Task Mannagenemt SPA made with Laravel and VueJS, Materialize-css.
+
+ Features CRUD functionality,
+
 Authentication by JWT, vue router, vuex, 
+
+![https://media.giphy.com/media/H1kL4r5P2WqKbc3Gap/giphy.gif](https://media.giphy.com/media/H1kL4r5P2WqKbc3Gap/giphy.gif)
 
 
 ## Getting Started

@@ -15,7 +15,7 @@
 				</ul>
 			</div>
 		</nav>
-		<ul id="slide-out" class="sidenav">
+		<!-- <ul id="slide-out" class="sidenav">
 			<li><div class="user-view">
 				<div class="background">
 					<img src="images/office.jpg">
@@ -30,7 +30,7 @@
 			<li><a class="subheader">Subheader</a></li>
 			<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 		</ul>
-		<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
 
 	</div>
 </template>
@@ -61,3 +61,8 @@ export default {
     }
 }
 </script>
+<style  scoped>
+nav{
+	background-color: #2196f3 
+}
+</style>
